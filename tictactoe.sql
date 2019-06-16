@@ -1,5 +1,3 @@
-DROP DATABASE IF EXISTS tictactoe;
-
 CREATE DATABASE tictactoe;
 
 CREATE SCHEMA IF NOT EXISTS user_data;
