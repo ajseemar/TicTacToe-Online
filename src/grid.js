@@ -2,7 +2,7 @@ import Cell from './cell';
 
 class Grid {
     constructor (cellSize) {
-        this.grid = this.generateGrid();
+        this.field = this.generateGrid();
         this.populateGrid(cellSize);
     }
 
@@ -13,15 +13,15 @@ class Grid {
     }
 
     populateGrid(cellSize) {
-        for (let col = 0; col < this.grid.length; col++) {
-            for (let row = 0; row < this.grid.length; row++) {
-                this.grid[row][col] = new Cell(row, col, cellSize);
+        for (let col = 0; col < this.field.length; col++) {
+            for (let row = 0; row < this.field.length; row++) {
+                this.field[row][col] = new Cell(row, col, cellSize);
             }
         }
     }
 
     render (ctx) {
-        this.grid.forEach(col => {
+        this.field.forEach(col => {
             col.forEach(cell => {
                 cell.render(ctx);
             });
