@@ -7,5 +7,6 @@ export const socket = io("http://localhost:3000/");
 document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
-    new Game(canvas.width, canvas.height);
+    const ttt = new Game(canvas.width, canvas.height);
+    ttt.render(ctx);
 });
