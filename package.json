@@ -1,0 +1,19 @@
+{
+  "name": "tictactoe",
+  "version": "1.0.0",
+  "description": "An online multiplayer version of tic tac toe built using MERN stack and socket.io",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajseemar/TicTacToe-Online.git"
+  },
+  "author": "Ajay Seemar Adlan Yanderbiev David Agustin Jason Horn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ajseemar/TicTacToe-Online/issues"
+  },
+  "homepage": "https://github.com/ajseemar/TicTacToe-Online#readme"
+}
