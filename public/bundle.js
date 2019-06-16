@@ -628,6 +628,18 @@ eval("\n\nvar alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqr
 
 /***/ }),
 
+/***/ "./src/cell.js":
+/*!*********************!*\
+  !*** ./src/cell.js ***!
+  \*********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\nclass Cell {\n    constructor (row, col, size) {\n        this.row = row;\n        this.col = col;\n        this.size = size;\n        this.value = \"\";\n    }\n\n    render (ctx) {\n        ctx.strokeStyle = '#000';\n        ctx.lineWidth = 2;\n        ctx.beginPath();\n        ctx.rect(this.row * this.size, this.col * this.size, this.size, this.size);\n        ctx.closePath();\n        ctx.stroke();\n    }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Cell);\n\n//# sourceURL=webpack:///./src/cell.js?");
+
+/***/ }),
+
 /***/ "./src/game.js":
 /*!*********************!*\
   !*** ./src/game.js ***!
@@ -636,7 +648,7 @@ eval("\n\nvar alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqr
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _grid__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./grid */ \"./src/grid.js\");\n\n\nclass Game {\n    constructor (width, height) {\n        this.width = width;\n        this.height = height;\n        this.grid = new _grid__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\n        console.log(this.grid);\n    }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Game);\n\n//# sourceURL=webpack:///./src/game.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _grid__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./grid */ \"./src/grid.js\");\n\n\nclass Game {\n    constructor (width, height) {\n        this.width = width;\n        this.height = height;\n        this.grid = new _grid__WEBPACK_IMPORTED_MODULE_0__[\"default\"](width / 3);\n        console.log(this.grid);\n    }\n\n    render (ctx) {\n        this.grid.render(ctx);\n    }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Game);\n\n//# sourceURL=webpack:///./src/game.js?");
 
 /***/ }),
 
@@ -648,7 +660,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _gri
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nclass Grid {\n    constructor () {\n        this.grid = this.generateGrid();\n    }\n\n    generateGrid () {\n        const grid = new Array(3);\n        for (let i = 0; i < grid.length; i++) grid[i] = new Array(3);\n        return grid;\n    }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Grid);\n\n//# sourceURL=webpack:///./src/grid.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _cell__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./cell */ \"./src/cell.js\");\n\n\nclass Grid {\n    constructor (cellSize) {\n        this.grid = this.generateGrid();\n        this.populateGrid(cellSize);\n    }\n\n    generateGrid () {\n        const grid = new Array(3);\n        for (let i = 0; i < grid.length; i++) grid[i] = new Array(3);\n        return grid;\n    }\n\n    populateGrid(cellSize) {\n        for (let col = 0; col < this.grid.length; col++) {\n            for (let row = 0; row < this.grid.length; row++) {\n                this.grid[row][col] = new _cell__WEBPACK_IMPORTED_MODULE_0__[\"default\"](row, col, cellSize);\n            }\n        }\n    }\n\n    render (ctx) {\n        this.grid.forEach(col => {\n            col.forEach(cell => {\n                cell.render(ctx);\n            });\n        });\n    }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Grid);\n\n//# sourceURL=webpack:///./src/grid.js?");
 
 /***/ }),
 
@@ -660,7 +672,7 @@ eval("__webpack_require__.r(__webpack_exports__);\nclass Grid {\n    constructor
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"socket\", function() { return socket; });\n/* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! socket.io-client */ \"./node_modules/socket.io-client/lib/index.js\");\n/* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(socket_io_client__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _src_game__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../src/game */ \"./src/game.js\");\n\n\n\n\nconst socket = socket_io_client__WEBPACK_IMPORTED_MODULE_0___default()(\"http://localhost:3000/\");\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n    const canvas = document.getElementById('canvas');\n    const ctx = canvas.getContext('2d');\n    new _src_game__WEBPACK_IMPORTED_MODULE_1__[\"default\"](canvas.width, canvas.height);\n});\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"socket\", function() { return socket; });\n/* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! socket.io-client */ \"./node_modules/socket.io-client/lib/index.js\");\n/* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(socket_io_client__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _src_game__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../src/game */ \"./src/game.js\");\n\n\n\n\nconst socket = socket_io_client__WEBPACK_IMPORTED_MODULE_0___default()(\"http://localhost:3000/\");\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n    const canvas = document.getElementById('canvas');\n    const ctx = canvas.getContext('2d');\n    const ttt = new _src_game__WEBPACK_IMPORTED_MODULE_1__[\"default\"](canvas.width, canvas.height);\n    ttt.render(ctx);\n});\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
